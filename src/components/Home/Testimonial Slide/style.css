@@ -1,0 +1,79 @@
+/* parent = logos
+    parent er niche div jar moddhe sob logos-slide
+*/
+/* @keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.parent-slide {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.sliding-cards {
+    display: inline-flex;
+    gap: 1rem;
+    animation: 100s slide infinite linear;
+}
+
+.sliding-cards::after {
+    content: "";
+    display: inline-flex;
+    gap: 1rem;
+
+    width: max-content;
+    pointer-events: none;
+    visibility: hidden;
+} */
+
+/* updated and working one bellow */
+
+
+@keyframes infinite-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-65%);
+    }
+}
+
+.animate-infinite-scroll {
+    animation: infinite-scroll 45s linear infinite;
+    animation-direction: alternate;
+    width: max-content;
+}
+
+/* Pause on hover */
+.animate-infinite-scroll:hover {
+    animation-play-state: paused;
+}
+
+@keyframes infinite-scroll-2 {
+    0% {
+        transform: translateX(-65%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.animate-infinite-scroll-2 {
+    animation: infinite-scroll-2 45s linear infinite;
+    animation-direction: alternate;
+    width: max-content;
+}
+
+/* Pause on hover */
+.animate-infinite-scroll-2:hover {
+    animation-play-state: paused;
+}
