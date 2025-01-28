@@ -8,7 +8,9 @@ function App() {
 
   return (
     <div>
-      <Navbar></Navbar>
+      <div className='top-0 sticky z-50'>
+        <Navbar></Navbar>
+      </div>
 
       <Outlet></Outlet>
 

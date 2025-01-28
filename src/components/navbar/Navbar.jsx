@@ -9,9 +9,9 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar glass">
             <div className="navbar-start">
-                <div className="dropdown">
+                <div className="dropdown dropdown-hover">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@ const Navbar = () => {
                         <li>
                             <a>Rooms</a>
                             <ul className="p-2">
-                                { links }
+                                {links}
                             </ul>
                         </li>
                         <li><NavLink to='/dashboard'>DashBoard</NavLink></li>
@@ -54,7 +54,7 @@ const Navbar = () => {
                             </ul>
                         </details>
                     </li>
-                    <li><NavLink to ='/dashboard'>Dashboard</NavLink></li>
+                    <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
                 </ul>
             </div>
             <div className="navbar-end">

@@ -1,8 +1,8 @@
 const FeaturedHomes = () => {
     return (
-        <div className='md:w-full flex md:flex-row flex-col justify-evenly gap-4'>
+        <div className='md:w-full flex items-center md:flex-row flex-col justify-evenly gap-4'>
             {/* simple */}
-            <div className="card bg-base-100 md:w-96 shadow-xl">
+            <div className="card bg-base-100 md:w-96 w-64 shadow-xl">
                 <figure>
                     <img
                         src="/simple-1.jpeg"
@@ -18,7 +18,7 @@ const FeaturedHomes = () => {
                 </div>
             </div>
             {/* suite */}
-            <div className="card bg-base-100 md:w-96 shadow-xl">
+            <div className="card bg-base-100 md:w-96 w-64 shadow-xl">
                 <figure>
                     <img
                         src="/suite-1.jpeg"
@@ -34,7 +34,7 @@ const FeaturedHomes = () => {
                 </div>
             </div>
             {/* duplex */}
-            <div className="card bg-base-100 md:w-96 shadow-xl">
+            <div className="card bg-base-100 md:w-96 w-64 shadow-xl">
                 <figure>
                     <img
                         src="/duplex-1.jpeg"

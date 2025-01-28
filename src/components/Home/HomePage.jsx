@@ -14,7 +14,7 @@ const HomePage = () => {
             <div>
                 <Banner></Banner>
             </div>
-            {/* Describe beneits */}
+            {/* Describe benefits */}
 
             {/* for tenants */}
             {/* payment protection, easy move-in, direct chat */}
@@ -143,28 +143,28 @@ const HomePage = () => {
             <p className="text-3xl font-bold my-6">Here we will Ask to join a owner</p>
 
             <section className='p-16 mb-4 bg-slate-500'>
-                <p className="text-center text-4xl font-bold">It's quick. All online. 100% safe!</p>
+                <p className="text-center md:text-6xl text-2xl font-bold">It's quick. All online. 100% safe!</p>
                 <br />
-                <div className='flex gap-x-4 my-5'>
+                <div className='flex md:flex-nowrap md:gap-x-4 flex-wrap my-5'>
                     <div>
                         <p className='text-3xl font-semibold'>1</p>
-                        <p className='text-2xl font-semibold font-serif'>Pick a house</p>
-                        <p className='text-md'>Explore hundreds of high-quality rooms, studios, and apartments. Save favorites. Get alerts. Finding your dream home could not be easier.</p>
+                        <p className='md:text-2xl text-sm font-semibold font-serif'>Pick a house</p>
+                        <p className='md:text-md text-xs'>Explore hundreds of high-quality rooms, studios, and apartments. Save favorites. Get alerts. Finding your dream home could not be easier.</p>
                     </div>
                     <div>
                         <p className='text-3xl font-semibold'>2</p>
-                        <p className='text-2xl font-semibold font-serif'>Message the landlord</p>
-                        <p className='text-md'>Enjoy an online, private space for all conversations with the landlord. Ask questions, share information, and see how well you both match.</p>
+                        <p className='md:text-2xl text-sm font-semibold font-serif'>Message the landlord</p>
+                        <p className='md:text-md text-xs'>Enjoy an online, private space for all conversations with the landlord. Ask questions, share information, and see how well you both match.</p>
                     </div>
                     <div>
                         <p className='text-3xl font-semibold'>3</p>
-                        <p className='text-2xl font-semibold font-serif'>Send a booking request</p>
-                        <p className='text-md'>Like a place and want to call it home? Send the landlord a booking request. You’ll know if it’s accepted or not within 48 hours.</p>
+                        <p className='md:text-2xl text-sm font-semibold font-serif'>Send a booking request</p>
+                        <p className='md:text-md text-xs'>Like a place and want to call it home? Send the landlord a booking request. You’ll know if it’s accepted or not within 48 hours.</p>
                     </div>
                     <div>
                         <p className='text-3xl font-semibold'>4</p>
-                        <p className='text-2xl font-semibold font-serif'>Pay, and it’s yours</p>
-                        <p className='text-md'>Pay the first month’s rent to confirm your booking. Congratulations, you found your next home. We’ll protect your money until you’ve moved in and checked the place out.</p>
+                        <p className='md:text-2xl text-sm font-semibold font-serif'>Pay, and it’s yours</p>
+                        <p className='md:text-md text-xs'>Pay the first month’s rent to confirm your booking. Congratulations, you found your next home. We’ll protect your money until you’ve moved in and checked the place out.</p>
                     </div>
                 </div>
                 <p className="text-center text-5xl font-bold mt-2">Join Now!</p>

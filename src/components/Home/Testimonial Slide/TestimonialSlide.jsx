@@ -92,7 +92,7 @@ const TestimonialSlide = () => {
                     ))}
                 </div>
             </div>
-            <h1 className="text-6xl font-bold text-center my-2">Our Testimonials</h1>
+            <h1 className="md:text-6xl text-3xl font-bold text-center my-2">Our Testimonials</h1>
             <div className="w-full overflow-hidden relative py-8">
                 <div className="flex animate-infinite-scroll-2 gap-x-10">
                     {/* Original Items */}
