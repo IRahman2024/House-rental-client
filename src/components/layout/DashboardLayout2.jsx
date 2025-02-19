@@ -24,7 +24,7 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(!false)
     const [selected, setSelected] = useState("Dashboard")
     const [notifs, setNotifs] = useState(3);
-    const [role, setRole] = useState("admin");
+    const [role, setRole] = useState("owner");
 
 
     // useEffect(() => {
@@ -60,7 +60,7 @@ const Sidebar = () => {
         { title: "Home", Icon: House, target: "/", selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Dashboard", Icon: LayoutDashboard, target: '/dashboard', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Chats", Icon: LayoutDashboard, target: '/dashboard', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "All Listings", Icon: ListOrdered, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "All Listings", Icon: ListOrdered, target: "/dashboard/listingOwner", selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Earnings", Icon: CircleDollarSign, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
         
         { title: "Bookings", Icon: FaCalendarCheck, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
@@ -145,7 +145,7 @@ const TitleSection = ({ isOpen }) => {
 }
 
 const Option = ({ Icon, target, title, selected, setSelected, isOpen, notifs }) => {
-    console.log(target);
+    // console.log(target);
     return (
         <NavLink
             to={target}

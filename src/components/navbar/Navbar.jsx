@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext);
 
     const links = <>
         <li><NavLink to='/suit'>Suit</NavLink></li>
@@ -11,7 +15,7 @@ const Navbar = () => {
     return (
         <div className="navbar glass">
             <div className="navbar-start">
-                <div className="dropdown dropdown-hover">
+                <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +32,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content dropdown-hover bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li><NavLink to='/'>Home</NavLink></li>
                         <li>
                             <a>Rooms</a>
@@ -58,7 +62,36 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Log In</a>
+                {
+                    user ? <>
+                        <div className="flex gap-x-2 dropdown dropdown-end">
+                            <div>
+                                <p>{user?.displayName}</p>
+                                <p>{user?.email}</p>
+                            </div>
+                            <div>
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img
+                                            alt="Tailwind CSS Navbar component"
+                                            src={user?.photoURL} />
+                                    </div>
+                                </div>
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                    <li>
+                                        <a className="justify-between">
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li><a>Settings</a></li>
+                                    <li onClick={logOut}><a>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </> : <NavLink to='/login' className="btn">Log In</NavLink>
+                }
             </div>
         </div>
     );

@@ -1,8 +1,24 @@
+import { useContext, useEffect } from 'react';
 import Banner from '../Banner/Banner';
 import FeaturedHomes from './FeaturedHomes.jsx/FeaturedHomes';
 import TestimonialSlide from './Testimonial Slide/TestimonialSlide';
+import { AuthContext } from '../../providers/AuthProvider';
+import axios from 'axios';
+import { data } from 'autoprefixer';
 
 const HomePage = () => {
+
+    const { user } = useContext(AuthContext);
+
+    console.log(user);
+
+    useEffect(() =>{
+        axios.get('http://localhost:3000/user')
+        .then(res => console.log(res.data))
+    },[])
+
+
+    
 
     const copy = document.querySelector('.sliding-cards')?.cloneNode(true);
     document.querySelector('.sliding-cards')?.appendChild(copy);

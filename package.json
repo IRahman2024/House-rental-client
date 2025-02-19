@@ -10,12 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.13.1",
+    "@cloudinary/url-gen": "^1.21.0",
+    "axios": "^1.7.9",
+    "axioss": "^0.0.1-security",
+    "firebase": "^11.2.0",
+    "ldrs": "^1.0.2",
     "localforage": "^1.10.0",
     "lucide-react": "^0.473.0",
     "match-sorter": "^6.3.4",
     "motion": "^11.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.3.5",
+    "react-hook-form": "^7.54.2",
     "react-icons": "^5.4.0",
     "react-router-dom": "^6.22.3",
     "sort-by": "^0.0.2"

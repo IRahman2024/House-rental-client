@@ -1,0 +1,129 @@
+[33mcommit 9d4812b2e9bbbdff909871e8eb849b3036e02682[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: IRahman2024 <stormfuryultra784@gmail.com>
+Date:   Tue Jan 28 17:36:51 2025 +0600
+
+    added some dummy houses on the rooms sections
+
+[1mdiff --git a/src/App.jsx b/src/App.jsx[m
+[1mindex f16410e..ad3fa9c 100644[m
+[1m--- a/src/App.jsx[m
+[1m+++ b/src/App.jsx[m
+[36m@@ -8,7 +8,9 @@[m [mfunction App() {[m
+ [m
+   return ([m
+     <div>[m
+[31m-      <Navbar></Navbar>[m
+[32m+[m[32m      <div className='top-0 sticky z-50'>[m
+[32m+[m[32m        <Navbar></Navbar>[m
+[32m+[m[32m      </div>[m
+ [m
+       <Outlet></Outlet>[m
+ [m
+[1mdiff --git a/src/components/Banner/Banner.jsx b/src/components/Banner/Banner.jsx[m
+[1mindex 0a894c5..bb815d3 100644[m
+[1m--- a/src/components/Banner/Banner.jsx[m
+[1m+++ b/src/components/Banner/Banner.jsx[m
+[36m@@ -3,15 +3,15 @@[m [mimport './style.css';[m
+ const Banner = () => {[m
+     return ([m
+         <div[m
+[31m-            className="hero min-h-screen rounded-3xl my-5"[m
+[32m+[m[32m            className="hero min-h-screen rounded-3xl mb-5"[m
+             style={{[m
+                 backgroundImage: "url(/banner-image-1.jpg)",[m
+             }}>[m
+             <div className="hero-overlay bg-opacity-60"></div>[m
+             <div className="hero-content text-neutral-content text-center">[m
+                 <div className="max-w-md text-white">[m
+[31m-                    <h1 className="mb-5 text-5xl font-bold">Hello there</h1>[m
+[31m-                    <p className="mb-5">[m
+[32m+[m[32m                    <h1 className="mb-5 md:text-5xl text-3xl font-bold">Hello there</h1>[m
+[32m+[m[32m                    <p className="mb-5 md:text-2xl text-sm">[m
+                         Welcome to your favorite destination <br /> to find home[m
+                     </p>[m
+                     <button className="btn btn-primary">Get Started</button>[m
+[1mdiff --git a/src/components/Home/FeaturedHomes.jsx/FeaturedHomes.jsx b/src/components/Home/FeaturedHomes.jsx/FeaturedHomes.jsx[m
+[1mindex d287ee4..7eb929d 100644[m
+[1m--- a/src/components/Home/FeaturedHomes.jsx/FeaturedHomes.jsx[m
+[1m+++ b/src/components/Home/FeaturedHomes.jsx/FeaturedHomes.jsx[m
+[36m@@ -1,8 +1,8 @@[m
+ const FeaturedHomes = () => {[m
+     return ([m
+[31m-        <div className='md:w-full flex md:flex-row flex-col justify-evenly gap-4'>[m
+[32m+[m[32m        <div className='md:w-full flex items-center md:flex-row flex-col justify-evenly gap-4'>[m
+             {/* simple */}[m
+[31m-            <div className="card bg-base-100 md:w-96 shadow-xl">[m
+[32m+[m[32m            <div className="card bg-base-100 md:w-96 w-64 shadow-xl">[m
+                 <figure>[m
+                     <img[m
+                         src="/simple-1.jpeg"[m
+[36m@@ -18,7 +18,7 @@[m [mconst FeaturedHomes = () => {[m
+                 </div>[m
+             </div>[m
+             {/* suite */}[m
+[31m-            <div className="card bg-base-100 md:w-96 shadow-xl">[m
+[32m+[m[32m            <div className="card bg-base-100 md:w-96 w-64 shadow-xl">[m
+                 <figure>[m
+                     <img[m
+                         src="/suite-1.jpeg"[m
+[36m@@ -34,7 +34,7 @@[m [mconst FeaturedHomes = () => {[m
+                 </div>[m
+             </div>[m
+             {/* duplex */}[m
+[31m-            <div className="card bg-base-100 md:w-96 shadow-xl">[m
+[32m+[m[32m            <div className="card bg-base-100 md:w-96 w-64 shadow-xl">[m
+                 <figure>[m
+                     <img[m
+                         src="/duplex-1.jpeg"[m
+[1mdiff --git a/src/components/Home/HomePage.jsx b/src/components/Home/HomePage.jsx[m
+[1mindex 547d59d..f0e4903 100644[m
+[1m--- a/src/components/Home/HomePage.jsx[m
+[1m+++ b/src/components/Home/HomePage.jsx[m
+[36m@@ -14,7 +14,7 @@[m [mconst HomePage = () => {[m
+             <div>[m
+                 <Banner></Banner>[m
+             </div>[m
+[31m-            {/* Describe beneits */}[m
+[32m+[m[32m            {/* Describe benefits */}[m
+ [m
+             {/* for tenants */}[m
+             {/* payment protection, easy move-in, direct chat */}[m
+[36m@@ -143,28 +143,28 @@[m [mconst HomePage = () => {[m
+             <p className="text-3xl font-bold my-6">Here we will Ask to join a owner</p>[m
+ [m
+             <section className='p-16 mb-4 bg-slate-500'>[m
+[31m-                <p className="text-center text-4xl font-bold">It's quick. All online. 100% safe!</p>[m
+[32m+[m[32m                <p className="text-center md:text-6xl text-2xl font-bold">It's quick. All online. 100% safe!</p>[m
+                 <br />[m
+[31m-                <div className='flex gap-x-4 my-5'>[m
+[32m+[m[32m                <div className='flex md:flex-nowrap md:gap-x-4 flex-wrap my-5'>[m
+                     <div>[m
+                         <p className='text-3xl font-semibold'>1</p>[m
+[31m-                        <p className='text-2xl font-semibold font-serif'>Pick a house</p>[m
+[31m-                        <p className='text-md'>Explore hundreds of high-quality rooms, studios, and apartments. Save favorites. Get alerts. Finding your dream home could not be easier.</p>[m
+[32m+[m[32m                        <p className='md:text-2xl text-sm font-semibold font-serif'>Pick a house</p>[m
+[32m+[m[32m                        <p className='md:text-md text-xs'>Explore hundreds of high-quality rooms, studios, and apartments. Save favorites. Get alerts. Finding your dream home could not be easier.</p>[m
+                     </div>[m
+                     <div>[m
+                         <p className='text-3xl font-semibold'>2</p>[m
+[31m-                        <p className='text-2xl font-semibold font-serif'>Message the landlord</p>[m
+[31m-                        <p className='text-md'>Enjoy an online, private space for all conversations with the landlord. Ask questions, share information, and see how well you both match.</p>[m
+[32m+[m[32m                        <p className='md:text-2xl text-sm font-semibold font-serif'>Message the landlord</p>[m
+[32m+[m[32m                        <p className='md:text-md text-xs'>Enjoy an online, private space for all conversations with the landlord. Ask questions, share information, and see how well you both match.</p>[m
+                     </div>[m
+                     <div>[m
+                         <p className='text-3xl font-semibold'>3</p>[m
+[31m-                        <p className='text-2xl font-semibold font-serif'>Send a booking request</p>[m
+[31m-                        <p className='text-md'>Like a place and want to call it home? Send the landlord a booking request. You’ll know if it’s accepted or not within 48 hours.</p>[m
+[32m+[m[32m                        <p className='md:text-2xl text-sm font-semibold font-serif'>Send a booking request</p>[m
+[32m+[m[32m                        <p className='md:text-md text-xs'>Like a place and want to call it home? Send the landlord a booking request. You’ll know if it’s accepted or not within 48 hours.</p>[m
+                     </div>[m
+                     <div>[m
+                         <p className='text-3xl font-semibold'>4</p>[m
+[31m-                        <p className='text-2xl font-semibold font-serif'>Pay, and it’s yours</p>[m
+[31m-                        <p className='text-md'>Pay the first month’s rent to confirm your booking. Congratulations, you found your next home. We’ll protect your money until you’ve moved in and checked the place out.</p>[m
+[32m+[m[32m                        <p className='md:text-2xl text-sm font-semibold font-serif'>Pay, and it’s yours</p>[m
+[32m+[m[32m                        <p className='md:text-md text-xs'>Pay the first month’s rent to confirm your booking. Congratulations, you found your next home. We’ll protect your money until you’ve moved in and checked the place out.</p>[m
+                     </div>[m
+                 </div>[m
+                 <p className="text-center text-5xl fo
