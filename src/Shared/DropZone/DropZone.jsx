@@ -88,7 +88,7 @@ const DropZone = forwardRef(({ onFilesChange, required, name }, ref) => {
     } = useDropzone({
         onDrop,
         accept: { 'image/*': [] },
-        maxSize: 300 * 1000
+        maxSize: 1024 * 1024
     });
 
     const style = useMemo(() => ({

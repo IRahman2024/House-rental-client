@@ -1,7 +1,7 @@
 import axios from "axios";
 import MyForm from "../../../../Shared/Forms/Form";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { lineSpinner } from 'ldrs'
+import { lineSpinner } from 'ldrs';
 import { AuthContext } from "../../../../providers/AuthProvider";
 
 const HouseListing = () => {
@@ -9,8 +9,20 @@ const HouseListing = () => {
     lineSpinner.register();
     const [loader, setLoader] = useState(false);
     const [house, setHouse] = useState([]);
+    const [userData, setUserData] = useState([]);
 
     // console.log(user?.email);
+
+    // for fetching user info to store it on house data
+    useEffect(() => {
+        const fetchUsers = async () => {
+            const users = await axios.get(`http://localhost:3000/getId?email=${user?.email}`);
+            setUserData(users.data);
+        }
+        fetchUsers();        
+    }, [user?.email]);
+    // console.log(userData);
+    
 
     const formName = 'Add A House';
     const btnName = 'Submit';
@@ -36,8 +48,8 @@ const HouseListing = () => {
 
     const fetchHouses = useCallback(async () => {
         try {
-            const res = await axios.get('http://localhost:3000/allHouse');
-            setHouse(res.data);
+            const house = await axios.get('http://localhost:3000/allHouse');
+            setHouse(house.data);
         } catch (err) {
             console.error('Error fetching houses:', err);
         }
@@ -53,17 +65,17 @@ const HouseListing = () => {
 
         try {
             await waitForUserEmail();
-            
+
             data.status = 'pending';
-            // data.userId = 
-            // data.email = user.email
-            console.log(userLoader);
+            data.userId = userData._id;
+            data.email = user.email;
 
             // console.log(data.houseImages.length);
             setLoader(true);
 
             const imgURLS = [];
 
+            // adding images to cloudinary one by one
             for (let i = 0; i < data.houseImages.length; i++) {
                 const uploadData = new FormData();
                 uploadData.append('file', data.houseImages[i]);
@@ -84,25 +96,25 @@ const HouseListing = () => {
             }
             data.houseImages = imgURLS;
             data.email = user?.email;
-            console.log(data);
+            // console.log(data);
             // console.log(imgURLS);
 
 
             // console.log(data);
 
-            // axios.post('http://localhost:3000/addHouse', data)
-            //     .then(res => {
-            //         if (res.data.acknowledged){
-            //             alert('House Added Successfully!');
-            //             fetchHouses();
-            //         }
-            //         else
-            //             alert('Failed to add house');
-            //     })
-            //     .catch(err => {
-            //         console.error('Error:', err);
-            //         alert('An error occurred while adding the house');
-            //     });
+            axios.post('http://localhost:3000/addHouse', data)
+                .then(res => {
+                    if (res.data.acknowledged){
+                        alert('House Added Successfully!');
+                        fetchHouses();
+                    }
+                    else
+                        alert('Failed to add house');
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                    alert('An error occurred while adding the house');
+                });
             setLoader(false);
         }
         catch (error) {

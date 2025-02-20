@@ -3,13 +3,24 @@ import { Navigate, NavLink } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import axios from 'axios';
+import { lineSpinner } from 'ldrs';
 
 const Login = () => {
+    const [loader, setLoader] = useState(false);
+    const [userList, setUserList] = useState([]);
+    lineSpinner.register();
+    
+    const { googleSignIn, user, signInUser, loader: userLoader } = useContext(AuthContext);
 
-    const { googleSignIn, user, signInUser } = useContext(AuthContext);
-    // console.log(user);
+    useEffect(() => {
+        axios.get('http://localhost:3000/allUsersEmail')
+            .then(res => {
+                // console.log(res.data);
+                setUserList(res.data);
+            })
+    })
 
-    // const [user, setUser] = useState(null);
+    // console.log(userList);
 
     const fields = [
         { name: 'email', label: 'Email', type: 'email' },
@@ -27,12 +38,26 @@ const Login = () => {
         </>
     )
 
-    // const googleProvider = new GoogleAuthProvider();
     const handleGoogleAuth = () => {
+        setLoader(true);
         googleSignIn()
             .then(result => {
                 // console.log(result.user);
-
+                
+                if(!userList.includes(result.user.email)){
+                    const data = {
+                        useName: result.user.displayName,
+                        email: result.user.email,
+                        profilePic: (result.user?.photoURL || null),
+                    }
+                    axios.post('http://localhost:3000/addUser', data)
+                    .then(res => {
+                        // console.log(res);
+                        setLoader(false);
+                        // Navigate('/dashboard')
+                    })
+                }
+                setLoader(false);
             })
         // console.log(user);
 
@@ -72,6 +97,8 @@ const Login = () => {
         signInUser(email, pass)
             .then(res => console.log(res))
 
+        reset()
+
         // const userInfo = { email, pass };
         // axios.post('http://localhost:3000/user', userInfo)
         // .then(res => {
@@ -80,10 +107,24 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <MyForm fields={fields} btnName={btnName} handler={handleData} formName={formName} reDirection={reDirection}
-                signInMethod={signInMethod}
-            />
+        <div className='size-full'>
+            <div>
+                {
+                    (loader || userLoader) && <div className="flex size-full items-center justify-center bg-blue-300 opacity-65 fixed z-20">
+                        <l-line-spinner
+                            size="181"
+                            stroke="10"
+                            speed="1"
+                            color="black"
+                        ></l-line-spinner>
+                    </div>
+                }
+            </div>
+            <div className='z-10'>
+                <MyForm fields={fields} btnName={btnName} handler={handleData} formName={formName} reDirection={reDirection}
+                    signInMethod={signInMethod}
+                />
+            </div>
         </div>
     );
 };
