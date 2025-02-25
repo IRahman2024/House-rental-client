@@ -11,7 +11,7 @@ const HouseListing = () => {
     const [house, setHouse] = useState([]);
     const [userData, setUserData] = useState([]);
 
-    // console.log(user?.email);
+    // console.log(userData?._id);
 
     // for fetching user info to store it on house data
     useEffect(() => {
@@ -21,7 +21,8 @@ const HouseListing = () => {
         }
         fetchUsers();        
     }, [user?.email]);
-    // console.log(userData);
+    // console.log(house);
+    // console.log(house[0]?.houseImages[0]);
     
 
     const formName = 'Add A House';
@@ -29,15 +30,15 @@ const HouseListing = () => {
 
     const fields = [
         { name: 'houseName', label: 'House Name', type: 'text' },
-        { name: 'price', label: 'Price', type: 'number' },
+        { name: 'rent', label: 'Rent', type: 'number' },
         { name: 'location', label: 'Location', type: 'text' },
         { name: 'description', label: 'Description', type: 'textBox' },
-        { name: 'features', label: 'Unique Features', type: 'textBox' },
-        { name: 'size', label: 'Size(perSqFeet)', type: 'number' },
+        { name: 'size', label: 'Total Space(Sq. Ft.)', type: 'number' },
         { name: 'bedrooms', label: 'Bedrooms', type: 'number' },
         { name: 'bathRooms', label: 'Bathrooms', type: 'number' },
         { name: 'toilets', label: 'Washrooms', type: 'number' },
-        { name: 'ac', label: 'AC', type: 'text' },
+        { name: 'ac', label: 'Air Conditioner', type: 'text' },
+        { name: 'swimmingPool', label: 'Swimming Pool', type: 'text' },
         { name: 'windows', label: 'Windows', type: 'number' },
         { name: 'garage', label: 'Garage', type: 'text' },
         { name: 'security', label: 'Security', type: 'text' },
@@ -46,14 +47,24 @@ const HouseListing = () => {
         // { name: 'images', label: 'Image', type: 'image' },
     ];
 
+    const dropDown = [
+        { name: 'houseType', label: 'House Type' },
+        { value: 'apartment', label: 'Apartment' },
+        { value: 'suite', label: 'Suite' },
+        { value: 'duplex', label: 'Duplex' }
+    ]
+
     const fetchHouses = useCallback(async () => {
         try {
-            const house = await axios.get('http://localhost:3000/allHouse');
+            const house = await axios.get(`http://localhost:3000/houseOfOwner?email=${user?.email}`);
+            console.log(user.email);
+            
+            // const house = await axios.get('http://localhost:3000/allHouse');
             setHouse(house.data);
         } catch (err) {
             console.error('Error fetching houses:', err);
         }
-    }, []);
+    }, [user?.email]);
 
     const handleData = useCallback(async (data) => {
 
@@ -67,8 +78,9 @@ const HouseListing = () => {
             await waitForUserEmail();
 
             data.status = 'pending';
-            data.userId = userData._id;
+            data.ownerId = userData._id;
             data.email = user.email;
+            // data.houseFront = user.email;
 
             // console.log(data.houseImages.length);
             setLoader(true);
@@ -96,8 +108,10 @@ const HouseListing = () => {
             }
             data.houseImages = imgURLS;
             data.email = user?.email;
-            // console.log(data);
+            data.houseFront = imgURLS[0];
+            // console.log(userData._id);
             // console.log(imgURLS);
+            // console.log(imgURLS[0]);
 
 
             // console.log(data);
@@ -122,15 +136,15 @@ const HouseListing = () => {
             alert('An error occurred. Please try again.'); // Optional: Show an alert to the user
             setLoader(false);
         }
-    }, [fetchHouses, user]);
+    }, [fetchHouses, user, userData._id]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/allHouse')
+        axios.get(`http://localhost:3000/houseOfOwner?email=${user?.email}`)
             .then(res => {
                 setHouse(res.data);
             })
         // console.log(house);
-    }, [fetchHouses])
+    }, [fetchHouses, user?.email])
 
     // console.log(house);
 
@@ -149,7 +163,7 @@ const HouseListing = () => {
             }
             <div className="z-10 flex gap-x-2">
                 <div className="w-1/2">
-                    <MyForm fields={fields} btnName={btnName} handler={handleData} formName={formName}
+                    <MyForm fields={fields} btnName={btnName} handler={handleData} formName={formName} dropDown={dropDown}
                     />
                 </div>
                 <div className="w-1/2">
@@ -158,8 +172,10 @@ const HouseListing = () => {
                             <tr>
                                 <th></th>
                                 <th>House Name</th>
-                                <th>Price</th>
+                                <th>Rent</th>
                                 <th>Address</th>
+                                <th>Type</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         {
@@ -168,8 +184,12 @@ const HouseListing = () => {
                                     <tr className="bg-base-200">
                                         <th>{idx + 1}</th>
                                         <td>{house?.houseName}</td>
-                                        <td>{house?.price}</td>
+                                        <td>{house?.rent}</td>
                                         <td>{house?.location}</td>
+                                        <td>{house?.houseType}</td>
+                                        <td>{ house?.status == 'pending' ? <div className="badge badge-warning">Pending</div> : <div className="badge badge-success">Approved</div>
+                                            
+                                            }</td>
                                     </tr>
                                 </tbody>
                             )

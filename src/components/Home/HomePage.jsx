@@ -8,17 +8,10 @@ import { data } from 'autoprefixer';
 
 const HomePage = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, role } = useContext(AuthContext);
 
-    console.log(user);
-
-    useEffect(() =>{
-        axios.get('http://localhost:3000/user')
-        .then(res => console.log(res.data))
-    },[])
-
-
-    
+    // console.log(user);
+    console.log(role);
 
     const copy = document.querySelector('.sliding-cards')?.cloneNode(true);
     document.querySelector('.sliding-cards')?.appendChild(copy);

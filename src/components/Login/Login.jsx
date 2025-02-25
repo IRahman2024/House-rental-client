@@ -1,5 +1,5 @@
 import MyForm from '../../Shared/Forms/Form';
-import { Navigate, NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import axios from 'axios';
@@ -10,6 +10,10 @@ const Login = () => {
     const [userList, setUserList] = useState([]);
     lineSpinner.register();
     
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
     const { googleSignIn, user, signInUser, loader: userLoader } = useContext(AuthContext);
 
     useEffect(() => {
@@ -46,7 +50,7 @@ const Login = () => {
                 
                 if(!userList.includes(result.user.email)){
                     const data = {
-                        useName: result.user.displayName,
+                        userName: result.user.displayName,
                         email: result.user.email,
                         profilePic: (result.user?.photoURL || null),
                     }
@@ -54,10 +58,13 @@ const Login = () => {
                     .then(res => {
                         // console.log(res);
                         setLoader(false);
-                        // Navigate('/dashboard')
+                        navigate(location?.state ? location.state : '/');
                     })
                 }
                 setLoader(false);
+                console.log(location?.state);
+                
+                navigate(location?.state ? location.state : '/');
             })
         // console.log(user);
 
@@ -93,11 +100,10 @@ const Login = () => {
         const email = data.email;
         const pass = data.password;
 
-        console.log(email, pass);
+        // console.log(email, pass);
         signInUser(email, pass)
             .then(res => console.log(res))
-
-        reset()
+            .then(() => navigate(location?.state ? location.state : '/'))
 
         // const userInfo = { email, pass };
         // axios.post('http://localhost:3000/user', userInfo)

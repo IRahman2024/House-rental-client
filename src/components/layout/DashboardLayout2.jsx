@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LayoutDashboard, BellRing, MailWarning, HomeIcon as House, ChevronsRight, Users, UserSearch, ListRestart, SquareUserRound, ListOrdered, CircleDollarSign, Grid2x2X, Star } from "lucide-react"
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { BsChatSquareDots } from "react-icons/bs";
@@ -9,6 +9,8 @@ import { NavLink, Outlet } from "react-router-dom";
 
 import { motion } from "motion/react";
 import { } from "lucide-react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { use } from "react";
 
 const DashboardLayout2 = () => {
     return (
@@ -21,19 +23,25 @@ const DashboardLayout2 = () => {
 }
 
 const Sidebar = () => {
+    const {role: userRole} = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(!false)
     const [selected, setSelected] = useState("Dashboard")
     const [notifs, setNotifs] = useState(3);
     const [role, setRole] = useState("owner");
 
+    useEffect(() => {
+        // console.log(userRole);
+        if (userRole === ('no role found' || undefined)) 
+            setRole('renter');
+        else{           
+            const role = userRole?.toLowerCase();
+            // console.log(role);
+            
+            setRole(role);
+        }
+    }, [userRole]);
 
-    // useEffect(() => {
-    //     setRole("owner");
-    //     setRole("admin");
-    //     setRole("customer");
-    // }, []);
-
-    const customerOptions = [
+    const renterOptions = [
         { title: "Dashboard", Icon: LayoutDashboard, target: '/dashboard',  selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Home", Icon: House, target: '/', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Profile", Icon: House, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
@@ -52,7 +60,7 @@ const Sidebar = () => {
         { title: "Earnings", Icon: CircleDollarSign, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Search User", Icon: UserSearch, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Chat with owner", Icon: BsChatSquareDots, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: notifs },
-        { title: "Manage Listings", Icon: ListRestart, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "Manage Listings", Icon: ListRestart, target: '/dashboard/manageListing', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Contact", Icon: SquareUserRound, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen }
     ];
 
@@ -71,7 +79,7 @@ const Sidebar = () => {
     let options = [];
     if (role === 'owner') { options = ownerOptions; }
     else if (role === 'admin') { options = adminOptions; }
-    else if (role === 'customer') { options = customerOptions; }
+    else if (role === 'renter') { options = renterOptions; }
 
     return (
         <motion.nav

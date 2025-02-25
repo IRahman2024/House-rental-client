@@ -9,7 +9,7 @@ import App from './App';
 import HomePage from './components/Home/HomePage';
 import Duplex from './components/Home/Rooms/Duplex';
 import Suite from './components/Home/Rooms/Suite';
-import Simple from './components/Home/Rooms/Simple';
+import Simple from './components/Home/Rooms/Apartment';
 import Dashboard from './components/Dashboard/Dashboard';
 import UserProfile from './components/Dashboard/Profile/UserProfile';
 import DashboardLayout2 from './components/layout/DashboardLayout2';
@@ -18,6 +18,9 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import AuthProvider from './providers/AuthProvider';
 import HouseListing from './components/DashCompos/Owner/HouseListing/HouseListing';
+import PrivateRoutes from './routes/privateRoutes';
+import ManageListing from './components/ManageListing/manageListing';
+import Details from './Shared/DetailedRoom/Details';
 
 const router = createBrowserRouter([
   {
@@ -38,8 +41,13 @@ const router = createBrowserRouter([
           element: <Suite></Suite>
         },
         {
-          path: '/simple',
+          path: '/apartment',
           element: <Simple></Simple>
+        },
+        {
+          path: '/details/:houseId/:ownerId',
+          loader: ({params}) => fetch(`http://localhost:3000/houseDetail/${params.houseId}/${params?.ownerId}`),
+          element: <Details></Details>
         },
         {
           path: '/login',
@@ -54,7 +62,7 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     // element: <Dashboard></Dashboard>,
-    element: < DashboardLayout2 />,
+    element: <PrivateRoutes>< DashboardLayout2 /></PrivateRoutes>,
     // element: < DashboardLayout />,
     children: [
       {
@@ -64,6 +72,11 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/listingOwner',
         element: <HouseListing></HouseListing>
+      },
+      //admin routes
+      {
+        path: '/dashboard/manageListing',
+        element: <ManageListing></ManageListing>
       },
     ]
   }

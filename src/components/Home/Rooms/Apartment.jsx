@@ -2,21 +2,23 @@ import { useEffect, useState } from "react";
 import { lineSpinner } from 'ldrs';
 import { Link } from "react-router-dom";
 
-const Duplex = () => {
-    const [suites, setSuites] = useState([]);
+const Apartment = () => {
+    const [apartment, setApartment] = useState([]);
     const [loader, setLoader] = useState(false);
     lineSpinner.register();
+    console.log(apartment);
+    
 
     useEffect(() => {
         setLoader(true);
-        fetch('http://localhost:3000/allDuplex')
+        fetch('http://localhost:3000/allApartments')
             .then(res => res.json())
             .then(data => {
-                setSuites(data)
+                setApartment(data)
                 setLoader(false)
             })
     }, [])
-    console.log(suites);
+    // console.log(apartment);
 
     return (
         <div className='grid m-6 md:grid-cols-3 justify-center gap-6'>
@@ -31,7 +33,7 @@ const Duplex = () => {
                 </div>
             }
             {
-                suites?.map((house, idx) => {
+                apartment?.map((house, idx) => {
                     return (
                         <div key={idx}
                             className="relative card bg-base-100 md:w-full w-64 shadow-xl">
@@ -47,9 +49,9 @@ const Duplex = () => {
                                 <h2 className="card-title">{house?.houseName}</h2>
                                 <p>{house?.description}</p>
                                 <div className="card-actions justify-end">
-                                    <Link
-                                        to={`/details/${house?._id}/${house?.ownerId}`}
-                                        className="btn btn-primary">Details</Link>
+                                    <Link 
+                                    to={`/details/${house?._id}/${house?.ownerId}`}
+                                    className="btn btn-primary">Details</Link>
                                     <button className="btn btn-outline btn-warning">Schedule For Rent</button>
                                 </div>
                             </div>
@@ -61,4 +63,4 @@ const Duplex = () => {
     );
 };
 
-export default Duplex;
+export default Apartment;

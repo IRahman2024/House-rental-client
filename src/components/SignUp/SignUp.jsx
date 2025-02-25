@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
 import MyForm from "../../Shared/Forms/Form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
 
 const SignUp = () => {
 
     const { createUser, updateUserProfile } = useContext(AuthContext);
+
+    const [loader, setLoader] = useState(false);
 
     const fields = [
         { name: 'userName', label: 'User Name', type: 'text' },
@@ -40,32 +43,45 @@ const SignUp = () => {
         const role = data.role
         let photo;
 
-        // const uploadData = new FormData();
+        setLoader(true);
 
-        // data.profilePic.forEach(image => uploadData.append('file', image));
-        // uploadData.append('upload_preset', 'profile_preset');
-        // uploadData.append('cloud_name', 'dwhcnlq8y');
+        const uploadData = new FormData();
 
-        // const url = import.meta.env.VITE_CLOUDINARY_URL;
+        data.profilePic.forEach(image => uploadData.append('file', image));
+        uploadData.append('upload_preset', 'profile_preset');
+        uploadData.append('cloud_name', 'dwhcnlq8y');
 
-        // const upload = await fetch(url, {
-        //     method: 'POST',
-        //     body: uploadData
-        // }).then(res => res.json())
-        //     .then(data => photo = data.url)
+        const url = import.meta.env.VITE_CLOUDINARY_URL;
+
+        const upload = await fetch(url, {
+            method: 'POST',
+            body: uploadData
+        }).then(res => res.json())
+            .then(data => photo = data.url)
 
         // console.log(upload); // shows the response
 
         // // console.log(data);
 
         // console.log(userName, first, last, email, pass, role, photo);
-        console.log(email, pass);
+        // console.log(email, pass, photo);
 
         createUser(email, pass)
             .then(result => {
                 console.log('clicked');
                 console.log(result);
 
+                const info = {
+                    userName: userName,
+                    firstName: first,
+                    lastName: last,
+                    email: email,
+                    role: role,
+                    profilePic: photo
+                }
+
+                axios.post('http://localhost:3000/addUser', info)
+                .then(res => console.log(res))
 
                 updateUserProfile(userName, photo)
                     .then(result => console.log(result))
@@ -73,11 +89,21 @@ const SignUp = () => {
 
             })
             .catch(error => console.error('Error creating user profile: ', error));
-
+            setLoader(false);
     }
 
     return (
         <div>
+            {
+                loader && <div className="fixed z-20 flex size-full items-center justify-center bg-white opacity-55">
+                    <l-line-spinner
+                        size="121"
+                        stroke="6"
+                        speed="1"
+                        color="black"
+                    ></l-line-spinner>
+                </div>
+            }
             <MyForm fields={fields} btnName={btnName} handler={handleData} formName={formName} reDirection={reDirection}
                 dropDown={dropDown}
             />

@@ -80,7 +80,7 @@ const MyForm = ({ fields, handler, formName, btnName, reDirection, dropDown, sig
                             </div>
                         ))}
                         {
-                            dropDown && <div className='mt-2'>
+                            dropDown && <div className='mt-2 text-xl'>
                                 <label className='font-medium'>{dropDown[0].label} </label>
                                 <select
                                     className='border-2 rounded-lg'

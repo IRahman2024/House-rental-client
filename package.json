@@ -12,6 +12,7 @@
   "dependencies": {
     "@cloudinary/react": "^1.13.1",
     "@cloudinary/url-gen": "^1.21.0",
+    "@splidejs/react-splide": "^0.7.12",
     "axios": "^1.7.9",
     "axioss": "^0.0.1-security",
     "firebase": "^11.2.0",
