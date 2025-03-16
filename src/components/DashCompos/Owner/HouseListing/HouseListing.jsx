@@ -35,7 +35,7 @@ const HouseListing = () => {
         { name: 'description', label: 'Description', type: 'textBox' },
         { name: 'size', label: 'Total Space(Sq. Ft.)', type: 'number' },
         { name: 'bedrooms', label: 'Bedrooms', type: 'number' },
-        { name: 'bathRooms', label: 'Bathrooms', type: 'number' },
+        { name: 'bathrooms', label: 'Bathrooms', type: 'number' },
         { name: 'toilets', label: 'Washrooms', type: 'number' },
         { name: 'ac', label: 'Air Conditioner', type: 'text' },
         { name: 'swimmingPool', label: 'Swimming Pool', type: 'text' },

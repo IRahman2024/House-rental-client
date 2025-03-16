@@ -44,12 +44,12 @@ const Sidebar = () => {
     const renterOptions = [
         { title: "Dashboard", Icon: LayoutDashboard, target: '/dashboard',  selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Home", Icon: House, target: '/', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Profile", Icon: House, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Notifications", Icon: BellRing, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: notifs },
+        // { title: "Profile", Icon: House, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        // { title: "Notifications", Icon: BellRing, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: notifs },
         { title: "Transactions", Icon: FaMoneyCheckAlt, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Chat with owner", Icon: BsChatSquareDots, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: notifs },
-        { title: "Reviews", Icon: Star, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Complain", Icon: MailWarning, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: 2 }
+        { title: "Reviews", Icon: Star, target: '/dashboard/myReviews', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        // { title: "Complain", Icon: MailWarning, target: '/dashboard/myComplains', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: 2 }
     ];
 
     const adminOptions = [
@@ -66,14 +66,14 @@ const Sidebar = () => {
 
     const ownerOptions = [
         { title: "Home", Icon: House, target: "/", selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Dashboard", Icon: LayoutDashboard, target: '/dashboard', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        // { title: "Dashboard", Icon: LayoutDashboard, target: '/dashboard', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Chats", Icon: LayoutDashboard, target: '/dashboard', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "All Listings", Icon: ListOrdered, target: "/dashboard/listingOwner", selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Earnings", Icon: CircleDollarSign, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
-        
+        { title: "Earnings", Icon: CircleDollarSign, target: "/dashboard/earning", selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Bookings", Icon: FaCalendarCheck, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Block-day", Icon: Grid2x2X, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Complains", Icon: MailWarning, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: 2 }
+        // { title: "Block-day", Icon: Grid2x2X, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "Complains", Icon: MailWarning, target: "/dashboard/ownerComplain", selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "Reviews", Icon: Star, target: "/dashboard/ownerReview", selected: selected, setSelected: setSelected, isOpen: isOpen }
     ];
     
     let options = [];

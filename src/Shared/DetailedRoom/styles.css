@@ -1,0 +1,4 @@
+.card {
+    transform: scale(1) perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+    box-shadow: 13px 8px 11px 0px #3a397435;
+}

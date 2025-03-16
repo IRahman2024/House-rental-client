@@ -21,6 +21,11 @@ import HouseListing from './components/DashCompos/Owner/HouseListing/HouseListin
 import PrivateRoutes from './routes/privateRoutes';
 import ManageListing from './components/ManageListing/manageListing';
 import Details from './Shared/DetailedRoom/Details';
+import MyReviews from './components/ReviewProfile/MyReviews';
+import OwnerReview from './components/OwnerReview/OwnerReview';
+import Charts from './components/Charts/Charts';
+import MyComplains from './components/MyComplains/MyComplains';
+import OwnerComplain from './components/OwnerComplain/OwnerComplain';
 
 const router = createBrowserRouter([
   {
@@ -65,6 +70,7 @@ const router = createBrowserRouter([
     element: <PrivateRoutes>< DashboardLayout2 /></PrivateRoutes>,
     // element: < DashboardLayout />,
     children: [
+      // owner routes
       {
         path: '/dashboard/profile',
         element: <UserProfile></UserProfile>
@@ -72,6 +78,27 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/listingOwner',
         element: <HouseListing></HouseListing>
+      },
+      {
+        path: '/dashboard/ownerReview',
+        element: <OwnerReview></OwnerReview>
+      },
+      {
+        path: '/dashboard/earning',
+        element: <Charts></Charts>
+      },
+      {
+        path: '/dashboard/ownerComplain',
+        element: <OwnerComplain></OwnerComplain>
+      },
+      // renter routes
+      {
+        path: '/dashboard/myReviews',
+        element: <MyReviews></MyReviews>
+      },
+      {
+        path: '/dashboard/myComplains',
+        element: <MyComplains></MyComplains>
       },
       //admin routes
       {

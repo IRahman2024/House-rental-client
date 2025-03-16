@@ -45,7 +45,7 @@ const Duplex = () => {
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">{house?.houseName}</h2>
-                                <p>{house?.description}</p>
+                                <p className="truncate">{house?.description}</p>
                                 <div className="card-actions justify-end">
                                     <Link
                                         to={`/details/${house?._id}/${house?.ownerId}`}

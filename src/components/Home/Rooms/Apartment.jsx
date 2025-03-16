@@ -36,7 +36,7 @@ const Apartment = () => {
                 apartment?.map((house, idx) => {
                     return (
                         <div key={idx}
-                            className="relative card bg-base-100 md:w-full w-64 shadow-xl">
+                            className="relative truncate card bg-base-100 md:w-full w-64 shadow-xl">
                             <figure>
                                 <div className="absolute top-4 right-4 badge badge-error h-10 font-semibold">
                                     {house?.rent} BDT/day
@@ -47,7 +47,7 @@ const Apartment = () => {
                             </figure>
                             <div className="card-body">
                                 <h2 className="card-title">{house?.houseName}</h2>
-                                <p>{house?.description}</p>
+                                <p className="truncate">{house?.description}</p>
                                 <div className="card-actions justify-end">
                                     <Link 
                                     to={`/details/${house?._id}/${house?.ownerId}`}
