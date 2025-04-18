@@ -17,10 +17,10 @@ const Details = () => {
   const data = useLoaderData();
 
   const images = houseImages?.map((img) => ({ src: img }))
-  // console.log(owner);
+  console.log(owner);
 
 
-  console.log(data);
+  // console.log(data);
 
 
   // const { ac, bathrooms, bedrooms, description, garage, garden, houseFront, houseImages, houseType, location, owner{}, rent, security, size, toilets, windows, swimmingPool} 
@@ -37,7 +37,7 @@ const Details = () => {
         <div>
           <p className='text-xl md:text-4xl font-bold'>{houseName}</p>
           <p className='text-xl md:text-2xl font-semibold italic'>{houseType}</p>
-          <DatePicker id={_id}></DatePicker>
+          <DatePicker id={_id} houseName={houseName} url={window.location.pathname} owner={owner} rent={rent} type={houseType}></DatePicker>
         </div>
         <div>
           <p className='text-xl md:text-4xl font-bold'>Rent: {rent} BDT/Day</p>
@@ -199,6 +199,7 @@ const Details = () => {
         {/* right portion */}
         <div>
           {/* profile */}
+          <p className="text-2xl font-bold mb-2 text-center">Meet the Owner</p>
           <div className='border-2 border-gray-300 p-4 rounded-xl'>
             {/* owner info */}
             <div className='flex gap-x-4 items-center'>
@@ -242,7 +243,7 @@ const Details = () => {
           </div>
           {/* add complain */}
           <div>
-            <Complain id={_id} houseName={houseName} url={window.location.pathname}></Complain>
+            <Complain id={_id} houseName={houseName} url={window.location.pathname} owner={owner}></Complain>
           </div>
         </div>
       </div>

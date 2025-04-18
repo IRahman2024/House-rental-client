@@ -26,6 +26,11 @@ import OwnerReview from './components/OwnerReview/OwnerReview';
 import Charts from './components/Charts/Charts';
 import MyComplains from './components/MyComplains/MyComplains';
 import OwnerComplain from './components/OwnerComplain/OwnerComplain';
+import RenterReservation from './components/RenterReservation/RenterReservation';
+import OwnerBookings from './components/OwnerBookings/OwnerBookings';
+import AllUsers from './components/AllUsers/AllUsers';
+import AllComplains from './components/AllComplains/AllComplains';
+import Payments from './components/Transactions/Transactions';
 
 const router = createBrowserRouter([
   {
@@ -91,6 +96,10 @@ const router = createBrowserRouter([
         path: '/dashboard/ownerComplain',
         element: <OwnerComplain></OwnerComplain>
       },
+      {
+        path: '/dashboard/ownerBookings',
+        element: <OwnerBookings></OwnerBookings>
+      },
       // renter routes
       {
         path: '/dashboard/myReviews',
@@ -100,10 +109,26 @@ const router = createBrowserRouter([
         path: '/dashboard/myComplains',
         element: <MyComplains></MyComplains>
       },
+      {
+        path: '/dashboard/mySchedules',
+        element: <RenterReservation></RenterReservation>
+      },
+      {
+        path: '/dashboard/myPayments',
+        element: <Payments></Payments>
+      },
       //admin routes
       {
         path: '/dashboard/manageListing',
         element: <ManageListing></ManageListing>
+      },
+      {
+        path: '/dashboard/allUsers',
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: '/dashboard/allComplains',
+        element: <AllComplains></AllComplains>
       },
     ]
   }

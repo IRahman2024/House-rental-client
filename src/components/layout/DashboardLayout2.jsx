@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { LayoutDashboard, BellRing, MailWarning, HomeIcon as House, ChevronsRight, Users, UserSearch, ListRestart, SquareUserRound, ListOrdered, CircleDollarSign, Grid2x2X, Star } from "lucide-react"
+import { LayoutDashboard, BellRing, MailWarning, HomeIcon as House, ChevronsRight, Users, UserSearch, ListRestart, SquareUserRound, ListOrdered, CircleDollarSign, Grid2x2X, Star, CalendarDays } from "lucide-react"
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { BsChatSquareDots } from "react-icons/bs";
 import { TbFaceIdError } from "react-icons/tb";
@@ -44,9 +44,10 @@ const Sidebar = () => {
     const renterOptions = [
         { title: "Dashboard", Icon: LayoutDashboard, target: '/dashboard',  selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Home", Icon: House, target: '/', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "Schedules", Icon: CalendarDays, target: '/dashboard/mySchedules', selected: selected, setSelected: setSelected, isOpen: isOpen },
         // { title: "Profile", Icon: House, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
         // { title: "Notifications", Icon: BellRing, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: notifs },
-        { title: "Transactions", Icon: FaMoneyCheckAlt, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "Transactions", Icon: FaMoneyCheckAlt, target: '/dashboard/myPayments', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Chat with owner", Icon: BsChatSquareDots, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: notifs },
         { title: "Reviews", Icon: Star, target: '/dashboard/myReviews', selected: selected, setSelected: setSelected, isOpen: isOpen },
         // { title: "Complain", Icon: MailWarning, target: '/dashboard/myComplains', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: 2 }
@@ -55,10 +56,11 @@ const Sidebar = () => {
     const adminOptions = [
         { title: "Dashboard", Icon: LayoutDashboard, target: '/dashboard', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Home", Icon: House, target: '/', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "User Overview", Icon: Users, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Complains Overview", Icon: TbFaceIdError, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Earnings", Icon: CircleDollarSign, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Search User", Icon: UserSearch, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "User Overview", Icon: Users, target: '/dashboard/allUsers', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "Complains Overview", Icon: TbFaceIdError, target: '/dashboard/allComplains', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        // admin er earning er kaj baki
+        { title: "Earnings", Icon: CircleDollarSign, target: '/dashboard/earning', selected: selected, setSelected: setSelected, isOpen: isOpen },
+        // { title: "Search User", Icon: UserSearch, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Chat with owner", Icon: BsChatSquareDots, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen, notifs: notifs },
         { title: "Manage Listings", Icon: ListRestart, target: '/dashboard/manageListing', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Contact", Icon: SquareUserRound, target: '', selected: selected, setSelected: setSelected, isOpen: isOpen }
@@ -70,7 +72,7 @@ const Sidebar = () => {
         { title: "Chats", Icon: LayoutDashboard, target: '/dashboard', selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "All Listings", Icon: ListOrdered, target: "/dashboard/listingOwner", selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Earnings", Icon: CircleDollarSign, target: "/dashboard/earning", selected: selected, setSelected: setSelected, isOpen: isOpen },
-        { title: "Bookings", Icon: FaCalendarCheck, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
+        { title: "Bookings", Icon: FaCalendarCheck, target: "/dashboard/ownerBookings", selected: selected, setSelected: setSelected, isOpen: isOpen },
         // { title: "Block-day", Icon: Grid2x2X, target: "", selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Complains", Icon: MailWarning, target: "/dashboard/ownerComplain", selected: selected, setSelected: setSelected, isOpen: isOpen },
         { title: "Reviews", Icon: Star, target: "/dashboard/ownerReview", selected: selected, setSelected: setSelected, isOpen: isOpen }

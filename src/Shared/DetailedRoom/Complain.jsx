@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import axios from 'axios';
 
-const Complain = ({ id: houseID, url, houseName }) => {
+const Complain = ({ id: houseID, url, houseName, owner }) => {
 
     const { user } = useContext(AuthContext);
     const [userData, setUserData] = useState();
@@ -29,7 +29,9 @@ const Complain = ({ id: houseID, url, houseName }) => {
         const userId = userData?._id;
         const houseId = houseID;
         const image = userData?.profilePic;
-        console.log(firstName, lastName, userId, houseId, image, complain, houseName, url);
+        const userEmail = user?.email;
+        const ownerEmail = owner?.email;
+        console.log(firstName, lastName, userId, houseId, image, complain, houseName, url, ownerEmail, userEmail);
 
 
         axios.post('http://localhost:3000/addComplain', { complain, firstName, lastName, image, userId, houseId, houseName, url })

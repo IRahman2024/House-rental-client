@@ -18,12 +18,6 @@ const Suite = () => {
             })
     }, [])
 
-    const handleScheDule = (id) => {
-        console.log(id);
-
-    }
-
-    console.log(suites);
 
     return (
         <div className='grid m-6 md:grid-cols-3 justify-center gap-6'>
@@ -53,14 +47,14 @@ const Suite = () => {
                             <div className="card-body">
                                 <h2 className="card-title">{house?.houseName}</h2>
                                 <p className="truncate">{house?.description}</p>
-                                <div className="card-actions justify-end">
+                                <div className="card-actions justify-end items-center">
                                     <Link
                                         to={`/details/${house?._id}/${house?.ownerId}`}
                                         className="btn btn-primary">Details</Link>
-                                    <button
+                                    {/* <button
                                         onClick={() => handleScheDule(house?._id)}
-                                        className="btn btn-outline btn-warning">Schedule For Rent</button>
-                                        {/* <DatePicker></DatePicker> */}
+                                        className="btn btn-outline btn-warning">Schedule For Rent</button> */}
+                                        {/* <DatePicker id={house?._id}></DatePicker> */}
                                 </div>
                             </div>
                         </div>
