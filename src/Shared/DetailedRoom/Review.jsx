@@ -13,7 +13,7 @@ const Review = ({ id: houseID, url, houseName }) => {
     const fetchReviews = useCallback(() => {
         // console.log('hit');
 
-        axios.get(`http://localhost:3000/reviews/${houseID}`)
+        axios.get(`http://localhost:5000/reviews/${houseID}`)
             .then(res => setReviews(res.data))
     }, [houseID])
 
@@ -21,7 +21,7 @@ const Review = ({ id: houseID, url, houseName }) => {
         if (!user?.email) return;
         console.log('hit');
 
-        axios.get(`http://localhost:3000/getId?email=${user.email}`)
+        axios.get(`http://localhost:5000/getId?email=${user.email}`)
             .then(res => setUserData(res.data))
         fetchReviews();
     }, [user?.email]);
@@ -55,7 +55,7 @@ const Review = ({ id: houseID, url, houseName }) => {
         console.log(firstName, lastName, userId, houseId, image, rating, text, houseName, url);
 
 
-        axios.post('http://localhost:3000/review', { text, firstName, lastName, image, userId, houseId, rating })
+        axios.post('http://localhost:5000/review', { text, firstName, lastName, image, userId, houseId, rating })
             .then(res => {
                 // console.log(res.data);
                 document.querySelector('.textarea').value = '';

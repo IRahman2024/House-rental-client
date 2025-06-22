@@ -9,7 +9,7 @@ const Duplex = () => {
 
     useEffect(() => {
         setLoader(true);
-        fetch('http://localhost:3000/allDuplex')
+        fetch('http://localhost:5000/allDuplex')
             .then(res => res.json())
             .then(data => {
                 setSuites(data)

@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     // console.log(user);
 
     const checkRole = async (email) => {
-        const data = await axios.get(`http://localhost:3000/getRole?email=${email}`);
+        const data = await axios.get(`http://localhost:5000/getRole?email=${email}`);
         // console.log(data.data);
         setRole(data.data);
     }

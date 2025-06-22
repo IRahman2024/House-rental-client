@@ -11,7 +11,7 @@ const Complain = ({ id: houseID, url, houseName, owner }) => {
         if (!user?.email) return;
         console.log('hit');
 
-        axios.get(`http://localhost:3000/getId?email=${user.email}`)
+        axios.get(`http://localhost:5000/getId?email=${user.email}`)
             .then(res => setUserData(res.data))
         // fetchReviews();
     }, [user?.email]);
@@ -34,7 +34,7 @@ const Complain = ({ id: houseID, url, houseName, owner }) => {
         console.log(firstName, lastName, userId, houseId, image, complain, houseName, url, ownerEmail, userEmail);
 
 
-        axios.post('http://localhost:3000/addComplain', { complain, firstName, lastName, image, userId, houseId, houseName, url })
+        axios.post('http://localhost:5000/addComplain', { complain, firstName, lastName, image, userId, houseId, houseName, url })
             .then(res => {
                 alert('Complain Submitted Successfully!');
                 document.querySelector('.textarea').value = '';

@@ -21,8 +21,8 @@ const SignUp = () => {
 
     const dropDown = [
         { name: 'role', label: 'I want to' },
-        { value: 'Renter', label: 'Rent A home' },
-        { value: 'Owner', label: 'Host a home' }
+        { value: 'renter', label: 'Rent A home' },
+        { value: 'owner', label: 'Host a home' }
     ]
 
     const formName = 'SignUp Now!';
@@ -80,7 +80,7 @@ const SignUp = () => {
                     profilePic: photo
                 }
 
-                axios.post('http://localhost:3000/addUser', info)
+                axios.post('http://localhost:5000/addUser', info)
                 .then(res => console.log(res))
 
                 updateUserProfile(userName, photo)

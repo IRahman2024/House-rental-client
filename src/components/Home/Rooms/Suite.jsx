@@ -10,7 +10,7 @@ const Suite = () => {
 
     useEffect(() => {
         setLoader(true);
-        fetch('http://localhost:3000/allSuites')
+        fetch('http://localhost:5000/allSuites')
             .then(res => res.json())
             .then(data => {
                 setSuites(data)

@@ -9,7 +9,7 @@ const OwnerReview = () => {
     console.log(reviews);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/reviews-by-email?email=${user?.email}`)
+        axios.get(`http://localhost:5000/reviews-by-email?email=${user?.email}`)
             .then(res => setReviews(res.data))
     }, [user])
 

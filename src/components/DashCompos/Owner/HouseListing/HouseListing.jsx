@@ -10,20 +10,21 @@ const HouseListing = () => {
     const [loader, setLoader] = useState(false);
     const [house, setHouse] = useState([]);
     const [userData, setUserData] = useState([]);
+    lineSpinner.register();
 
     // console.log(userData?._id);
 
     // for fetching user info to store it on house data
     useEffect(() => {
         const fetchUsers = async () => {
-            const users = await axios.get(`http://localhost:3000/getId?email=${user?.email}`);
+            const users = await axios.get(`http://localhost:5000/getId?email=${user?.email}`);
             setUserData(users.data);
         }
-        fetchUsers();        
+        fetchUsers();
     }, [user?.email]);
     // console.log(house);
     // console.log(house[0]?.houseImages[0]);
-    
+
 
     const formName = 'Add A House';
     const btnName = 'Submit';
@@ -56,10 +57,10 @@ const HouseListing = () => {
 
     const fetchHouses = useCallback(async () => {
         try {
-            const house = await axios.get(`http://localhost:3000/houseOfOwner?email=${user?.email}`);
+            const house = await axios.get(`http://localhost:5000/houseOfOwner?email=${user?.email}`);
             console.log(user.email);
-            
-            // const house = await axios.get('http://localhost:3000/allHouse');
+
+            // const house = await axios.get('http://localhost:5000/allHouse');
             setHouse(house.data);
         } catch (err) {
             console.error('Error fetching houses:', err);
@@ -116,9 +117,9 @@ const HouseListing = () => {
 
             // console.log(data);
 
-            axios.post('http://localhost:3000/addHouse', data)
+            axios.post('http://localhost:5000/addHouse', data)
                 .then(res => {
-                    if (res.data.acknowledged){
+                    if (res.data.acknowledged) {
                         alert('House Added Successfully!');
                         fetchHouses();
                     }
@@ -139,15 +140,30 @@ const HouseListing = () => {
     }, [fetchHouses, user, userData._id]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/houseOfOwner?email=${user?.email}`)
+        setLoader(true)
+        axios.get(`http://localhost:5000/houseOfOwner?email=${user?.email}`)
             .then(res => {
                 setHouse(res.data);
+                setLoader(false);
             })
         // console.log(house);
     }, [fetchHouses, user?.email])
 
-    // console.log(house);
+    console.log(house.length);
 
+    if (loader) {
+        return (
+            < div className="fixed z-20 flex h-full w-3/4 items-center justify-center bg-white opacity-55" >
+                <l-line-spinner
+                    size="121"
+                    stroke="6"
+                    speed="1"
+                    color="black"
+                ></l-line-spinner>
+            </div >
+
+        )
+    }
 
     return (
         <div className="md:m-4 w-full">
@@ -166,36 +182,43 @@ const HouseListing = () => {
                     <MyForm fields={fields} btnName={btnName} handler={handleData} formName={formName} dropDown={dropDown}
                     />
                 </div>
-                <div className="w-1/2">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>House Name</th>
-                                <th>Rent</th>
-                                <th>Address</th>
-                                <th>Type</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        {
-                            house.map((house, idx) =>
-                                <tbody key={idx}>
-                                    <tr className="bg-base-200">
-                                        <th>{idx + 1}</th>
-                                        <td>{house?.houseName}</td>
-                                        <td>{house?.rent}</td>
-                                        <td>{house?.location}</td>
-                                        <td>{house?.houseType}</td>
-                                        <td>{ house?.status == 'pending' ? <div className="badge badge-warning">Pending</div> : <div className="badge badge-success">Approved</div>
-                                            
+                {
+                    house?.length === 0 && <div className="w-full flex items-start justify-center">
+                        <p className="text-5xl font-black text-black">No House Added Yet</p>
+                    </div>
+                }
+                {
+                    house.length > 0 && <div className="w-1/2">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>House Name</th>
+                                    <th>Rent</th>
+                                    <th>Address</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            {
+                                house.map((house, idx) =>
+                                    <tbody key={idx}>
+                                        <tr className="bg-base-200">
+                                            <th>{idx + 1}</th>
+                                            <td>{house?.houseName}</td>
+                                            <td>{house?.rent}</td>
+                                            <td>{house?.location}</td>
+                                            <td>{house?.houseType}</td>
+                                            <td>{house?.status == 'pending' ? <div className="badge badge-warning">Pending</div> : <div className="badge badge-success">Approved</div>
+
                                             }</td>
-                                    </tr>
-                                </tbody>
-                            )
-                        }
-                    </table>
-                </div>
+                                        </tr>
+                                    </tbody>
+                                )
+                            }
+                        </table>
+                    </div>
+                }
             </div>
         </div>
     );

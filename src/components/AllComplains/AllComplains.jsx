@@ -1,17 +1,34 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { lineSpinner } from 'ldrs';
 const AllComplains = () => {
     const [complains, setComplains] = useState();
+    const [loader, setLoader] = useState(false);
+    lineSpinner.register();
 
     useEffect(() => {
-        axios.get('http://localhost:3000/allComplains')
-            .then((res) => setComplains(res.data));
+        setLoader(true);
+        axios.get('http://localhost:5000/allComplains')
+            .then((res) => setComplains(res.data))
+            .finally(() => setLoader(false))
     }, [])
 
     console.log(complains);
-    
+
+    if (loader) {
+        return (
+            <div className="fixed z-20 flex h-full w-3/4 items-center justify-center bg-white opacity-55">
+                <l-line-spinner
+                    size="121"
+                    stroke="6"
+                    speed="1"
+                    color="black"
+                ></l-line-spinner>
+            </div>
+
+        )
+    }
 
     return (
         <div className="m-4 w-full">
@@ -39,9 +56,9 @@ const AllComplains = () => {
                                     <td>{complain?.houseName}</td>
                                     <td>{complain?.firstName} {complain?.lastName}</td>
                                     <td>
-                                        <img 
-                                        className="size-20 rounded-xl"
-                                        src={complain?.image} alt="" />
+                                        <img
+                                            className="size-20 rounded-xl"
+                                            src={complain?.image} alt="" />
                                     </td>
                                     <td>{complain?.complain}</td>
                                     <td>{complain?.userEmail}</td>

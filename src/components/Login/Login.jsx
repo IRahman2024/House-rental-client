@@ -17,7 +17,7 @@ const Login = () => {
     const { googleSignIn, user, signInUser, loader: userLoader } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/allUsersEmail')
+        axios.get('http://localhost:5000/allUsersEmail')
             .then(res => {
                 // console.log(res.data);
                 setUserList(res.data);
@@ -41,6 +41,8 @@ const Login = () => {
                 to='/signup'>SignUp</NavLink></p>
         </>
     )
+    // console.log(location);
+    
 
     const handleGoogleAuth = () => {
         setLoader(true);
@@ -54,7 +56,7 @@ const Login = () => {
                         email: result.user.email,
                         profilePic: (result.user?.photoURL || null),
                     }
-                    axios.post('http://localhost:3000/addUser', data)
+                    axios.post('http://localhost:5000/addUser', data)
                     .then(res => {
                         // console.log(res);
                         setLoader(false);
@@ -106,7 +108,7 @@ const Login = () => {
             .then(() => navigate(location?.state ? location.state : '/'))
 
         // const userInfo = { email, pass };
-        // axios.post('http://localhost:3000/user', userInfo)
+        // axios.post('http://localhost:5000/user', userInfo)
         // .then(res => {
         //     console.log(res.data);
         // })        

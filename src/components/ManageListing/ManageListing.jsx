@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { lineSpinner } from 'ldrs';
+lineSpinner.register();
 
 const ManageListing = () => {
     const [loader, setLoader] = useState(false);
@@ -12,7 +13,7 @@ const ManageListing = () => {
 
     useEffect(() => {
         setLoader(true);
-        axios.get(`http://localhost:3000/allHouse`)
+        axios.get(`http://localhost:5000/allHouse`)
             .then(res => {
                 setHouse(res.data);
                 setLoader(false);
@@ -20,12 +21,12 @@ const ManageListing = () => {
 
     }, [refresh])
 
-    console.log(house);
-    console.log(owners);
+    // console.log(house);
+    // console.log(owners);
 
     const approval = (id) => {
         // console.log(id);
-        axios.put(`http://localhost:3000/updateStatus?id=${id}`, {'status': 'approved'})
+        axios.put(`http://localhost:5000/updateStatus?id=${id}`, {'status': 'approved'})
         .then(res => {
             console.log(res)
             setRefresh(!refresh);
@@ -35,7 +36,7 @@ const ManageListing = () => {
     const denial = (id) => {
         console.log(id);
         setLoader(true);
-        axios.put(`http://localhost:3000/updateStatus?id=${id}`, {'status': 'pending'})
+        axios.put(`http://localhost:5000/updateStatus?id=${id}`, {'status': 'pending'})
         .then(res => {
             console.log(res)
             setRefresh(!refresh);

@@ -11,7 +11,7 @@ const Apartment = () => {
 
     useEffect(() => {
         setLoader(true);
-        fetch('http://localhost:3000/allApartments')
+        fetch('http://localhost:5000/allApartments')
             .then(res => res.json())
             .then(data => {
                 setApartment(data)

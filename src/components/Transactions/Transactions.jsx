@@ -30,7 +30,7 @@ const Transactions = () => {
     }
 
     const handlePayment = (id) => {
-        axios.post(`http://localhost:3000/myPayment/${id}`)
+        axios.post(`http://localhost:5000/myPayment/${id}`)
             .then((res) => {
     
                 // Open the payment URL in a new tab
@@ -55,7 +55,7 @@ const Transactions = () => {
     useEffect(() => {
         if (!user?.email) return; // Ensure email exists before fetching
 
-        axios.get(`http://localhost:3000/getDues/${user?.email}`)
+        axios.get(`http://localhost:5000/getDues/${user?.email}`)
             .then(res => {
                 // setDatas(res.data);
                 const convertedDatas = res.data.map(data => ({
@@ -67,7 +67,7 @@ const Transactions = () => {
             })
             .catch(err => console.error("Error fetching data:", err));
 
-        axios.get(`http://localhost:3000/transactions/${user?.email}`)
+        axios.get(`http://localhost:5000/transactions/${user?.email}`)
             .then(res => {
                 // setDatas(res.data);
                 const convertedDatas = res.data.map(data => ({

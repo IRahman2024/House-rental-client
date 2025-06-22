@@ -11,10 +11,10 @@ const MyReviews = () => {
     // console.log(userData?._id);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/getId?email=${user?.email}`)
+        axios.get(`http://localhost:5000/getId?email=${user?.email}`)
             .then(res => setUserData(res.data))
             .then(() => {
-                axios.get(`http://localhost:3000/userReviews/${userData?._id}`)
+                axios.get(`http://localhost:5000/userReviews/${userData?._id}`)
                     .then(res => setReviews(res.data));
                 axios.get
             })

@@ -29,7 +29,7 @@ const DatePicker = ({ id, houseName, url, owner, rent, type }) => {
     // }
 
     const fetchReservedDates = () => {
-        axios.get(`http://localhost:3000/getReservedDates/${id}`)
+        axios.get(`http://localhost:5000/getReservedDates/${id}`)
             .then(res => setReservedDates(res.data))
             .catch(err => console.error("Error fetching reserved dates:", err));
     };
@@ -192,7 +192,7 @@ const DatePicker = ({ id, houseName, url, owner, rent, type }) => {
         console.log(houseId, houseName, userEmail, firstName, lastName, userId, image, from, to, url, ownerEmail, totalRent, nightsCount, type);
         // console.log(nightsCount);
 
-        axios.post('http://localhost:3000/addReservation', { houseId, houseName, type, userEmail, firstName, lastName, userId, image, from, to, url, ownerEmail, totalRent, nightsCount })
+        axios.post('http://localhost:5000/addReservation', { houseId, houseName, type, userEmail, firstName, lastName, userId, image, from, to, url, ownerEmail, totalRent, nightsCount })
             .then(res => {
                 alert('Reservation Successful! Please pay from dashboard to confirm your reservation.');
                 setSelected(null);
@@ -219,9 +219,9 @@ const DatePicker = ({ id, houseName, url, owner, rent, type }) => {
         if (!user?.email) return;
         console.log('hit');
 
-        axios.get(`http://localhost:3000/getId?email=${user.email}`)
+        axios.get(`http://localhost:5000/getId?email=${user.email}`)
             .then(res => setUserData(res.data))
-        // axios.get(`http://localhost:3000/getReservedDates/${id}`)
+        // axios.get(`http://localhost:5000/getReservedDates/${id}`)
         //     .then(res => setReservedDates(res.data))
         fetchReservedDates();
     }, [user?.email], handleSchedule);
@@ -242,7 +242,7 @@ const DatePicker = ({ id, houseName, url, owner, rent, type }) => {
     //     const userEmail = user?.email;
     //     // console.log(houseId, userEmail, firstName, lastName, userId, image, from, to);
 
-    //     axios.post('http://localhost:3000/addReservation', { houseId, userEmail, firstName, lastName, userId, image, from, to })
+    //     axios.post('http://localhost:5000/addReservation', { houseId, userEmail, firstName, lastName, userId, image, from, to })
     //         .then(res => {
     //             alert('Reservation Successful!');
     //             setSelected(null);

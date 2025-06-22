@@ -28,7 +28,7 @@ const OwnerBookings = () => {
     }
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:3000/deleteReservation/${id}`)
+        axios.delete(`http://localhost:5000/deleteReservation/${id}`)
             .then(() => {
                 alert("Reservation deleted successfully!");
                 setRefetch(!refetch); // Toggle refetch state to trigger useEffect
@@ -39,7 +39,7 @@ const OwnerBookings = () => {
     useEffect(() => {
         if (!user?.email) return; // Ensure email exists before fetching
 
-        axios.get(`http://localhost:3000/getReservedDates-house/${user?.email}`)
+        axios.get(`http://localhost:5000/getReservedDates-house/${user?.email}`)
             .then(res => {
                 // setDatas(res.data);
                 const convertedDatas = res.data.map(data => ({

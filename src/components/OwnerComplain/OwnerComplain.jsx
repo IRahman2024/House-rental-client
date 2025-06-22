@@ -8,7 +8,7 @@ const OwnerComplain = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/complains-by-email?email=${user?.email}`)
+        axios.get(`http://localhost:5000/complains-by-email?email=${user?.email}`)
             .then(res => setComplain(res.data))
             .catch(err => console.error("Error fetching complaints:", err)); // Added error handling
     }, [user?.email]);
